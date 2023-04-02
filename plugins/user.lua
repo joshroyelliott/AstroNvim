@@ -9,4 +9,16 @@ return {
   --     require("lsp_signature").setup()
   --   end,
   -- },
+
+  -- tpope staples
+  { "tpope/vim-unimpaired", event = "User AstroFile" },
+  { "tpope/vim-surround", event = "User AstroFile" },
+  { "tpope/vim-repeat", event = "User AstroFile" },
+
+  -- markdown previewer
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = "markdown",
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
 }
