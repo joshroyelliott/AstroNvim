@@ -22,10 +22,37 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    -- markdown viewer
     ["<leader>vm"] = { "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle Markdown preview" },
+    -- openscad viewer
     ["<leader>vo"] = {
       "<cmd>w<cr> :call system('/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD --colorscheme AstroNvim '.expand('%:p') . ' 2> /dev/null &')<cr>",
       desc = "Open OpenSCAD",
+    },
+    -- todo-comments navigation
+    ["]t"] = {
+      function() require("todo-comments").jump_next() end,
+      desc = "Next todo comment",
+    },
+    ["[t"] = {
+      function() require("todo-comments").jump_prev() end,
+      desc = "Previous todo comment",
+    },
+    -- zen-mode
+    ["<leader>uz"] = {
+      function()
+        require("zen-mode").toggle {
+          window = {
+            width = 0.85, -- width will be 85% of the editor width
+          },
+          plugins = {
+            tmux = {
+              enabled = true, -- disable tmux status line
+            },
+          },
+        }
+      end,
+      desc = "Toggle zen-mode",
     },
   },
   t = {
