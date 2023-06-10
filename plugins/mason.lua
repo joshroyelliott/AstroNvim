@@ -7,12 +7,7 @@ return {
     opts = {
       ensure_installed = {
         "lua_ls",
-        "pylsp",
-        "rust_analyzer",
-        "marksman",
         "eslint",
-        "html",
-        "cssls",
         "jsonls",
         "openscad_lsp",
       },
@@ -24,10 +19,7 @@ return {
     -- overrides `require("mason-null-ls").setup(...)`
     opts = {
       ensure_installed = {
-        "prettier",
         "stylua",
-        "rustfmt",
-        "autoflake",
         "fixjson",
       },
     },
@@ -36,8 +28,26 @@ return {
     "jay-babu/mason-nvim-dap.nvim",
     -- overrides `require("mason-nvim-dap").setup(...)`
     opts = {
-      ensure_installed = {
-        "python",
+      handlers = {
+        python = function()
+          local dap = require "dap"
+          dap.adapters.python = {
+            type = "executable",
+            command = "python3",
+            args = {
+              "-m",
+              "debugpy.adapter",
+            },
+          }
+          dap.configurations.python = {
+            {
+              type = "python",
+              request = "launch",
+              name = "Launch file",
+              program = "${file}",
+            },
+          }
+        end,
       },
     },
   },
