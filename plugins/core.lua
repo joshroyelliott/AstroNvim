@@ -72,6 +72,7 @@ return {
       wk.register({
         b = { name = "Buffer" },
         v = { name = "Viewer" },
+        z = { name = "Notes" },
       }, { mode = "n", prefix = "<leader>" })
     end,
   },

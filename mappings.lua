@@ -22,11 +22,25 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    -- zk
+    ["<leader>zn"] = { "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", desc = "Create a new note" },
+    ["<leader>zo"] = { "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", desc = "Open notes" },
+    ["<leader>zt"] = { "<Cmd>ZkTags<CR>", desc = "Open notes by tags" },
+    ["<leader>zf"] = {
+      ":ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
+      desc = "Search notes",
+    },
+    -- ["<leader>zb"] = { "<Cmd>ZkBacklinks<CR>", desc = "Open notes backlinked to buffer" },
+    -- ["<leader>zl"] = { "<Cmd>ZkLinks<CR>", desc = "Open notes linked in buffer" },
+    -- copilot
+    ["<leader>lC"] = { ":Copilot toggle<cr>", desc = "Toggle Copilot" },
+    ["<leader>lc"] = { ":Copilot suggestion<cr>", desc = "Copilot suggestion" },
+    ["<leader>lp"] = { ":Copilot panel<cr>", desc = "Copilot panel" },
     -- markdown viewer
-    ["<leader>vm"] = { "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle Markdown preview" },
+    ["<leader>vm"] = { ":MarkdownPreviewToggle<cr>", desc = "Toggle Markdown preview" },
     -- openscad viewer
     ["<leader>vo"] = {
-      "<cmd>w<cr> :call system('/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD --colorscheme AstroNvim '.expand('%:p') . ' 2> /dev/null &')<cr>",
+      "<cmd>w<cr> :call system('/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD --colorscheme Catppuccin '.expand('%:p') . ' 2> /dev/null &')<cr>",
       desc = "Open OpenSCAD",
     },
     -- todo-comments navigation
@@ -54,6 +68,12 @@ return {
       end,
       desc = "Toggle zen-mode",
     },
+  },
+  v = {
+    -- zk
+    ["<leader>zf"] = { ":'<,'>ZkMatch<CR>", desc = "Search notes matching selection" },
+    ["<leader>zt"] = { ":'<,'>ZkNewFromTitleSelection<CR>", desc = "New note title selection" },
+    ["<leader>zc"] = { ":'<,'>ZkNewFromContentSelection<CR>", desc = "New note from content selection" },
   },
   t = {
     -- setting a mapping to false will disable it
