@@ -15,12 +15,28 @@ return {
     config = function() require("zk").setup() end,
   },
 
+  -- chat-gpt
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup {
+        api_key_cmd = "pass chatgpt",
+      }
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  },
+
   -- movement
   {
     "ggandor/leap.nvim",
     keys = {
-      { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-      { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+      { "s",  mode = { "n", "x", "o" }, desc = "Leap forward to" },
+      { "S",  mode = { "n", "x", "o" }, desc = "Leap backward to" },
       { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
     },
     config = function(_, opts)
@@ -37,8 +53,8 @@ return {
 
   -- tpope staples
   { "tpope/vim-unimpaired", event = "User AstroFile" },
-  { "tpope/vim-surround", event = "User AstroFile" },
-  { "tpope/vim-repeat", event = "User AstroFile" },
+  { "tpope/vim-surround",   event = "User AstroFile" },
+  { "tpope/vim-repeat",     event = "User AstroFile" },
 
   -- markdown previewer
   {
